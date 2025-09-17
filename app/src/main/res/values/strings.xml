@@ -2,12 +2,12 @@
     <string name="app_name">LifeMaster</string>
 
     <!-- Login Screen -->
-    <string name="title">Bienvenido</string>
+    <string name="title">Iniciar sesión</string>
     <string name="sub_title">Por favor ingresa tus credenciales para continuar</string>
     <string name="label_username">Usuario</string>
     <string name="label_passwor">Contraseña</string>
-    <string name="label_button">Iniciar sesión</string>
-    <string name="warning_info">⚠ No compartas tus credenciales.</string>
+    <string name="label_button">Acceder</string>
+    <string name="warning_info">⚠ ¡No compartas tus credenciales!</string>
     <string name="footer_app">© 2025 LifeMaster, Todos los derechos reservados</string>
 
 </resources>

@@ -44,13 +44,6 @@ fun ScreenLogin(
 ) {
     var username by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
-    var isVisible: Boolean by rememberSaveable { mutableStateOf(false) }
-
-
-    fun clearText() {
-        username = ""
-        password = ""
-    }
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -67,7 +60,7 @@ fun ScreenLogin(
                 ) {
                     Text(
                         text = stringResource(id = R.string.footer_app),
-                        color = Color.White,
+                        color = MaterialTheme.colorScheme.onBackground,
                         style = MaterialTheme.typography.bodySmall,
                         fontSize = 14.sp,
                         modifier = Modifier.alpha(0.6f).padding(top = 16.dp, bottom = 16.dp),
@@ -98,7 +91,7 @@ fun ScreenLogin(
                         text = stringResource(id = R.string.title),
                         modifier = Modifier.fillMaxWidth(),
                         style = MaterialTheme.typography.displaySmall,
-                        color = Color.White,
+                        color = MaterialTheme.colorScheme.onBackground,
                         textAlign = TextAlign.Center
                     )
                     Text(
@@ -107,17 +100,12 @@ fun ScreenLogin(
                         modifier = Modifier.fillMaxWidth()
                             .padding(top = 4.dp, bottom = 16.dp)
                             .alpha(0.5f),
-                        color = Color.White,
+                        color = MaterialTheme.colorScheme.onBackground,
                         textAlign = TextAlign.Center
                     )
                     //form
-                    EmailEditText(username, stringResource(id = R.string.label_username), { username = it }, { username = "" })
-                    PasswordEditText(
-                        password,
-                        stringResource(id = R.string.label_passwor),
-                        { password = it },
-                        isVisible,
-                        { isVisible = !isVisible })
+                    EmailEditText(username, stringResource(id = R.string.label_username)) { username = it }
+                    PasswordEditText(password, stringResource(id = R.string.label_passwor)) { password = it }
                     PrimaryButton( {onLogin()} , stringResource(id = R.string.label_button))
                     // Info pequeño
                     Text(
@@ -127,7 +115,7 @@ fun ScreenLogin(
                             .fillMaxWidth()
                             .padding(top = 16.dp)
                             .alpha(0.4f),
-                        color = Color.White,
+                        color = MaterialTheme.colorScheme.onBackground,
                         textAlign = TextAlign.Center
                     )
                 }
