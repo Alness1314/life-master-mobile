@@ -14,7 +14,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -29,11 +28,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.alness.lifemaster.ui.core.components.EmailEditText
 import com.alness.lifemaster.ui.core.components.PasswordEditText
 import com.alness.lifemaster.ui.core.components.PrimaryButton
 import com.alness.lifemaster.R
+import com.alness.lifemaster.ui.core.components.MediumBodyText
+import com.alness.lifemaster.ui.core.components.SmallBodyText
+import com.alness.lifemaster.ui.core.components.SmallDisplayText
 
 @Composable
 fun ScreenLogin(
@@ -51,34 +52,34 @@ fun ScreenLogin(
         bottomBar = {
             // Card fija abajo (similar a MaterialCardView transparent)
             Surface(
-                color = MaterialTheme.colorScheme.primary.copy(alpha = 0.0f)
+                color = Color.Transparent
             ) {
                 Box(
-                    modifier = Modifier
-                        .fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth(),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(
-                        text = stringResource(id = R.string.footer_app),
-                        color = MaterialTheme.colorScheme.onBackground,
-                        style = MaterialTheme.typography.bodySmall,
-                        fontSize = 14.sp,
-                        modifier = Modifier.alpha(0.6f).padding(top = 16.dp, bottom = 16.dp),
+                    MediumBodyText(
+                        stringResource(id = R.string.footer_app),
+                        modifier = Modifier.padding( 16.dp).alpha(0.8f),
+                        textAlign = TextAlign.Center
                     )
                 }
             }
         }
-    ) {
-        innerPadding ->
-        Box(modifier = Modifier.fillMaxSize().padding(innerPadding)){
+    ) { innerPadding ->
+        Box(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
             Column(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
-                Column (modifier = Modifier.fillMaxWidth()
-                    .weight(1f)
-                    .verticalScroll(rememberScrollState())
-                    .padding(horizontal = 16.dp, vertical = 16.dp)){
-                    Box(modifier = modifier.fillMaxWidth().height(250.dp),
-                        contentAlignment = Alignment.Center){
-                        Image(painter = painterResource(logoResId),
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth().weight(1f).verticalScroll(rememberScrollState())
+                        .padding(horizontal = 16.dp, vertical = 16.dp)
+                ) {
+                    Box(
+                        modifier = modifier.fillMaxWidth().height(250.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Image(
+                            painter = painterResource(logoResId),
                             contentDescription = "descripcion de la imagen",
                             modifier = Modifier.height(80.dp).fillMaxWidth(0.9f),
                             contentScale = ContentScale.FillWidth
@@ -87,37 +88,31 @@ fun ScreenLogin(
 
                     Spacer(modifier = Modifier.height(8.dp))
                     //textos
-                    Text(
-                        text = stringResource(id = R.string.title),
+                    SmallDisplayText(
+                        stringResource(id = R.string.title),
                         modifier = Modifier.fillMaxWidth(),
-                        style = MaterialTheme.typography.displaySmall,
-                        color = MaterialTheme.colorScheme.onBackground,
                         textAlign = TextAlign.Center
                     )
-                    Text(
-                        text = stringResource(id = R.string.sub_title),
-                        style = MaterialTheme.typography.bodySmall,
-                        modifier = Modifier.fillMaxWidth()
-                            .padding(top = 4.dp, bottom = 16.dp)
-                            .alpha(0.5f),
-                        color = MaterialTheme.colorScheme.onBackground,
+                    MediumBodyText(
+                        stringResource(id = R.string.sub_title),
+                        modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp).alpha(0.6f),
                         textAlign = TextAlign.Center
                     )
+
                     //form
-                    EmailEditText(username, stringResource(id = R.string.label_username)) { username = it }
-                    PasswordEditText(password, stringResource(id = R.string.label_passwor)) { password = it }
-                    PrimaryButton( {onLogin()} , stringResource(id = R.string.label_button))
+                    EmailEditText(
+                        username,
+                        stringResource(id = R.string.label_username)
+                    ) { username = it }
+                    PasswordEditText(
+                        password,
+                        stringResource(id = R.string.label_passwor)
+                    ) { password = it }
+                    PrimaryButton({ onLogin() }, stringResource(id = R.string.label_button))
                     // Info pequeño
-                    Text(
-                        text = stringResource(id = R.string.warning_info),
-                        style = MaterialTheme.typography.bodySmall,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 16.dp)
-                            .alpha(0.4f),
-                        color = MaterialTheme.colorScheme.onBackground,
-                        textAlign = TextAlign.Center
-                    )
+                    SmallBodyText(stringResource(id = R.string.warning_info),
+                        modifier = Modifier.fillMaxWidth().padding(top = 16.dp).alpha(0.4f),
+                        textAlign = TextAlign.Center)
                 }
             }
         }
